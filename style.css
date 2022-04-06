@@ -1,5 +1,17 @@
 #keyboard {
-    width : 151.18110236px;
-    height : 37.795275591px;
+    width : 302.36220472px;
+    height : 18.897637795px;
+    border:1px solid black;
+    scroll-behavior: smooth;
+    margin: 0%;
+}
+
+.letter {
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 1px dotted black;
+}
+
+#backspace {
     border:1px solid black;
 }
