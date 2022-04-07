@@ -9,6 +9,7 @@
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas: ". .";
+    justify-content: center;
 }
 
 #keyboard {
@@ -18,6 +19,13 @@
     overflow: hidden;
 }
 
+#textarea {
+    border: 1px solid black;
+    margin: 10%;
+    height: 50%;
+    justify-content: center;
+
+}
 .letter {
     padding-left: 5px;
     padding-right: 5px;
@@ -29,6 +37,8 @@
 #backspace {
     border:1px solid black;
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 table,td,tr {
