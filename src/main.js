@@ -18,4 +18,5 @@ $(document).ready(() => {
         $("#keyboard").append("<td><div class='letter'>" + element + "</div></td>");
     });
     
+
 })
