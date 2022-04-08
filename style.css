@@ -2,6 +2,7 @@
     --pixels_per_cm : 35.185px
 }
 
+
 .container {  
     display: grid;
     grid-template-columns: calc(var(--pixels_per_cm) * 7) calc(var(--pixels_per_cm) * 1);
@@ -13,17 +14,22 @@
 }
 
 #keyboard {
-    /* width : 302.36220472px;
-    height : 18.897637795px; */
     border: 1px solid black;
-    overflow: hidden;
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
 
-#textarea {
+#keyboard::-webkit-scrollbar {
+    display: none;
+    height: 0;
+}
+
+#textfield {
+    margin: 5%;
     border: 1px solid black;
-    margin: 10%;
     height: 50%;
-    justify-content: center;
+    width: 70%;
+    align-self: center;
 
 }
 .letter {
