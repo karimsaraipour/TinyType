@@ -1,6 +1,6 @@
 var TINYTYPE = TINYTYPE || {}
 
-
+window.addEventListener('contextmenu', (event) => {event.preventDefault()})
 $(document).ready(() => {
     console.log('Initialize TinyType')
     // modify basic html to have divs for alphabet
@@ -16,9 +16,10 @@ $(document).ready(() => {
         $("#keyboard").append("<td><div class='letter' id='" + element + "'>" + element + "</div></td>");
         $("#" + element).on('mousedown', {letter: element}, TINYTYPE.typeLetter);
 
+
     });
 
-    $("#backspace").on('mousedown', TINYTYPE.deleteOne);
+    $("#backspace").on('mousedown', TINYTYPE.delete);
     
 })
 
@@ -26,25 +27,29 @@ $(document).ready(() => {
 TINYTYPE.typeLetter = (event) => {
     let currentTextField = $("#textfield").val();
     let letter = event.data.letter;
-    console.log(letter)
+    if (event.button === 2) {
+        event.preventDefault();
+        letter = letter.toUpperCase();
+    }
     let newTextField = currentTextField + letter;
     $("#textfield").val(newTextField);
 }
 
-TINYTYPE.deleteOne = () => {
+TINYTYPE.delete = (event) => {  
     let currentTextField = $("#textfield").val();
-    let newTextField = currentTextField.substring(0, currentTextField.length - 1);
-    $("#textfield").val(newTextField);
-}
-
-TINYTYPE.deleteWord = () => {
-    let currentTextField = $("#textfield").val();
-    let lastSpace = currentTextField.lastIndexOf(" ")
-    if (lastSpace == -1) {
-        $("#textfield").val("");
-    }
-    else {
-        let newTextField = currentTextField.substring(0, lastSpace);
+    if (event.button === 1) {
+        let newTextField = currentTextField.substring(0, currentTextField.length - 1);
         $("#textfield").val(newTextField);
     }
+    else if (event.button === 2) {
+        let lastSpace = currentTextField.lastIndexOf(" ")
+        if (lastSpace == -1) {
+            $("#textfield").val("");
+        }
+        else {
+            let newTextField = currentTextField.substring(0, lastSpace);
+            $("#textfield").val(newTextField);
+        }
+    }
+
 }
