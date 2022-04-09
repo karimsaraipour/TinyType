@@ -1,6 +1,7 @@
 var TINYTYPE = TINYTYPE || {}
 
-window.addEventListener('contextmenu', (event) => {event.preventDefault()})
+window.addEventListener('contextmenu', (event) => {event.preventDefault()});
+
 $(document).ready(() => {
     console.log('Initialize TinyType')
     // modify basic html to have divs for alphabet
@@ -19,6 +20,7 @@ $(document).ready(() => {
 
     });
 
+    $("#space").on('mousedown', TINYTYPE.space);
     $("#backspace").on('mousedown', TINYTYPE.delete);
     
 })
@@ -28,17 +30,26 @@ TINYTYPE.typeLetter = (event) => {
     let currentTextField = $("#textfield").val();
     let letter = event.data.letter;
     if (event.button === 2) {
-        event.preventDefault();
+        // event.preventDefault();
         letter = letter.toUpperCase();
     }
     let newTextField = currentTextField + letter;
     $("#textfield").val(newTextField);
 }
 
+TINYTYPE.space = () => {
+    let currentTextField = $("#textfield").val();
+    let newTextField = currentTextField + " ";
+    $("#textfield").val(newTextField);
+};
+
 TINYTYPE.delete = (event) => {  
     let currentTextField = $("#textfield").val();
-    if (event.button === 1) {
-        let newTextField = currentTextField.substring(0, currentTextField.length - 1);
+    console.log('backspace')
+    if (event.button === 0) {
+        let newTextField = currentTextField.slice(0, -1);
+        console.log('backspac2e');
+        
         $("#textfield").val(newTextField);
     }
     else if (event.button === 2) {
