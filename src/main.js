@@ -2,6 +2,25 @@ var TINYTYPE = TINYTYPE || {}
 
 window.addEventListener('contextmenu', (event) => {event.preventDefault()});
 
+(function() {
+    function scrollHorizontally(e) {
+        e = window.event || e;
+        let delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+        document.getElementById('keyboard').scrollLeft -= (delta * 4); 
+        e.preventDefault();
+    }
+    if (document.getElementById('keyboard').addEventListener) {
+        // IE9, Chrome, Safari, Opera
+        document.getElementById('keyboard').addEventListener('mousewheel', scrollHorizontally, false);
+        // Firefox
+        document.getElementById('keyboard').addEventListener('DOMMouseScroll', scrollHorizontally, false);
+    } else {
+        // IE 6/7/8
+        document.getElementById('keyboard').attachEvent('onmousewheel', scrollHorizontally);
+    }
+})();
+
+
 $(document).ready(() => {
     console.log('Initialize TinyType')
     // modify basic html to have divs for alphabet
@@ -64,3 +83,4 @@ TINYTYPE.delete = (event) => {
     }
 
 }
+
